@@ -4,6 +4,11 @@ import java.util.Date;
 
 public class UserModel implements ItemInterface{
     public String name;
+
+    public Date getjDate() {
+        return jDate;
+    }
+
     public String phone;
     public Date jDate;
 
@@ -18,4 +23,6 @@ public class UserModel implements ItemInterface{
     public boolean isSection() {
         return false;
     }
+
+
 }
