@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements MyMediatorInterfa
     SimpleDateFormat sdf;
     RecyclerView recyclerView;
     ArrayList<UserModel> usersList = new ArrayList<>();
+    ArrayList<UserModel> usersList2 = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,10 @@ public class MainActivity extends AppCompatActivity implements MyMediatorInterfa
 
         editText=(EditText)findViewById(R.id.edittext);
         button=(Button)findViewById(R.id.button_send);
+
+
+
+
 
         try {
             usersList.add(new UserModel("Jos", "123546567", sdf.parse("2016-1-1")));
@@ -85,13 +90,27 @@ public class MainActivity extends AppCompatActivity implements MyMediatorInterfa
                 try {
 
                     UserModel userModel =new UserModel("Stas", editText.getText().toString(), sdf.parse("2018-1-31"));
-                  // usersList.add(userModel);
                     setOneItem(usersList,userModel);
                     mAdapter.notifyDataSetChanged();
 
                     editText.setText("");
                 } catch (ParseException e) {
                     e.printStackTrace();
+                }
+            }
+        });
+
+
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int firstVisibleItems = layoutManager.findFirstCompletelyVisibleItemPosition();
+                if(firstVisibleItems==0){
+                    Toast.makeText(MainActivity.this,"1",Toast.LENGTH_SHORT).show();
+
+
                 }
             }
         });
